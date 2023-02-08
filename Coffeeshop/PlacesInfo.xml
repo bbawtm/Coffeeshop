@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SetOfPlaces>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Малая Садовая ул., 3/54</Address>
+        <Coordinates>59.934440, 30.337272</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Невский просп., 100</Address>
+        <Coordinates>59.931955, 30.355328</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Невский просп., 22-24</Address>
+        <Coordinates>59.935809, 30.324411</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Московский просп., 216</Address>
+        <Coordinates>59.848829, 30.322130</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Кронверкский просп., 21/2</Address>
+        <Coordinates>59.956766, 30.319045</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Кирочная ул., 19</Address>
+        <Coordinates>59.943766, 30.360159</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Невский просп., 114-116</Address>
+        <Coordinates>59.932309, 30.358929</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Савушкина, 126</Address>
+        <Coordinates>59.986199, 30.202930</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>ул. Типанова, 27/39</Address>
+        <Coordinates>59.853949, 30.349893</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Полюстровский просп., 84</Address>
+        <Coordinates>59.987589, 30.353587</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>Финляндский просп., 4</Address>
+        <Coordinates>59.957635, 30.342645</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>ул. Коллонтай, 3В</Address>
+        <Coordinates>59.911356, 30.445942</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>ш. Дорога Жизни, 8</Address>
+        <Coordinates>60.024928, 30.612543</Coordinates>
+    </Place>
+    <Place>
+        <City>Санкт-Петербург</City>
+        <Address>аэропорт Пулково</Address>
+        <Coordinates>59.800990, 30.266434</Coordinates>
+    </Place>
+    <Place>
+        <Address></Address>
+        <Coordinates></Coordinates>
+    </Place>
+</SetOfPlaces>

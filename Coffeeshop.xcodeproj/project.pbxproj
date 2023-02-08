@@ -13,6 +13,8 @@
 		94F1DC0A2993BD470067DE0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94F1DC082993BD470067DE0C /* Main.storyboard */; };
 		94F1DC0C2993BD470067DE0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94F1DC0B2993BD470067DE0C /* Assets.xcassets */; };
 		94F1DC0F2993BD470067DE0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94F1DC0D2993BD470067DE0C /* LaunchScreen.storyboard */; };
+		94F1DC1A2993C4E00067DE0C /* PlacesInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 94F1DC192993C4E00067DE0C /* PlacesInfo.xml */; };
+		94F1DC1C2993C6D80067DE0C /* PlacesInfoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1DC1B2993C6D80067DE0C /* PlacesInfoContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		94F1DC0B2993BD470067DE0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94F1DC0E2993BD470067DE0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94F1DC102993BD470067DE0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94F1DC192993C4E00067DE0C /* PlacesInfo.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlacesInfo.xml; sourceTree = "<group>"; };
+		94F1DC1B2993C6D80067DE0C /* PlacesInfoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesInfoContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,41 @@
 		94F1DC012993BD470067DE0C /* Coffeeshop */ = {
 			isa = PBXGroup;
 			children = (
+				94F1DC182993BE2A0067DE0C /* View */,
+				94F1DC172993BE210067DE0C /* ViewModel */,
+				94F1DC162993BE190067DE0C /* Model */,
 				94F1DC022993BD470067DE0C /* AppDelegate.swift */,
 				94F1DC042993BD470067DE0C /* SceneDelegate.swift */,
-				94F1DC062993BD470067DE0C /* ViewController.swift */,
-				94F1DC082993BD470067DE0C /* Main.storyboard */,
 				94F1DC0B2993BD470067DE0C /* Assets.xcassets */,
-				94F1DC0D2993BD470067DE0C /* LaunchScreen.storyboard */,
 				94F1DC102993BD470067DE0C /* Info.plist */,
+				94F1DC192993C4E00067DE0C /* PlacesInfo.xml */,
 			);
 			path = Coffeeshop;
+			sourceTree = "<group>";
+		};
+		94F1DC162993BE190067DE0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94F1DC1B2993C6D80067DE0C /* PlacesInfoContainer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		94F1DC172993BE210067DE0C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				94F1DC062993BD470067DE0C /* ViewController.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		94F1DC182993BE2A0067DE0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				94F1DC082993BD470067DE0C /* Main.storyboard */,
+				94F1DC0D2993BD470067DE0C /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +157,7 @@
 			files = (
 				94F1DC0F2993BD470067DE0C /* LaunchScreen.storyboard in Resources */,
 				94F1DC0C2993BD470067DE0C /* Assets.xcassets in Resources */,
+				94F1DC1A2993C4E00067DE0C /* PlacesInfo.xml in Resources */,
 				94F1DC0A2993BD470067DE0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +171,7 @@
 			files = (
 				94F1DC072993BD470067DE0C /* ViewController.swift in Sources */,
 				94F1DC032993BD470067DE0C /* AppDelegate.swift in Sources */,
+				94F1DC1C2993C6D80067DE0C /* PlacesInfoContainer.swift in Sources */,
 				94F1DC052993BD470067DE0C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,11 +322,12 @@
 				DEVELOPMENT_TEAM = Y27S32PB7A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Coffeeshop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Coffeeshop;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,11 +351,12 @@
 				DEVELOPMENT_TEAM = Y27S32PB7A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Coffeeshop/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Coffeeshop;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
