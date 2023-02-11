@@ -21,9 +21,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let placesInfo = InfoContainer()
         print(placesInfo.contents)
         
-        
         mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 59.938955, longitude: 30.315644), latitudinalMeters: initRegionRadius, longitudinalMeters: initRegionRadius), animated: true)
         mapView.delegate = self
+        mapView.register(CustomAnnotation.self, forAnnotationViewWithReuseIdentifier: "CustomAnnotationIdentifier")
         
         for place in placesInfo.contents {
             guard let coord = place.coordinates else { continue }
@@ -34,8 +34,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let pin = mapView.dequeueReusableAnnotationView(withIdentifier: "CustomAnnotationIdentifier")
+
+        return pin
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation else { return }
+        guard let view = view as? CustomAnnotation, let annotation = view.annotation else { return }
+        view.setSelectedStyle()
         
         let sheetStoryboard = UIStoryboard.init(name: "BottomSheetSubscreen", bundle: Bundle.main)
         let sheetViewController = sheetStoryboard.instantiateInitialViewController() as! BottomSheetViewController
@@ -51,7 +58,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
         self.present(sheetViewController, animated: true)
     }
     
-    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        guard let view = view as? CustomAnnotation else { return }
+        view.setDeselectedStyle()
+    }
     
 }
 

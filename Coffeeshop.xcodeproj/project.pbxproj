@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		944BA815299799B1006977D9 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944BA814299799B1006977D9 /* CustomAnnotation.swift */; };
 		94F1DC032993BD470067DE0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1DC022993BD470067DE0C /* AppDelegate.swift */; };
 		94F1DC052993BD470067DE0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1DC042993BD470067DE0C /* SceneDelegate.swift */; };
 		94F1DC072993BD470067DE0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1DC062993BD470067DE0C /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		944BA814299799B1006977D9 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		94F1DBFF2993BD470067DE0C /* Coffeeshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coffeeshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F1DC022993BD470067DE0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94F1DC042993BD470067DE0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				94F1DC062993BD470067DE0C /* ViewController.swift */,
 				94F1DC1F29941F4F0067DE0C /* BottomSheetViewController.swift */,
+				944BA814299799B1006977D9 /* CustomAnnotation.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				94F1DC1C2993C6D80067DE0C /* PlacesInfoContainer.swift in Sources */,
 				94F1DC2029941F4F0067DE0C /* BottomSheetViewController.swift in Sources */,
 				94F1DC052993BD470067DE0C /* SceneDelegate.swift in Sources */,
+				944BA815299799B1006977D9 /* CustomAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
