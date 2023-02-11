@@ -15,6 +15,8 @@
 		94F1DC0F2993BD470067DE0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94F1DC0D2993BD470067DE0C /* LaunchScreen.storyboard */; };
 		94F1DC1A2993C4E00067DE0C /* PlacesInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 94F1DC192993C4E00067DE0C /* PlacesInfo.xml */; };
 		94F1DC1C2993C6D80067DE0C /* PlacesInfoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1DC1B2993C6D80067DE0C /* PlacesInfoContainer.swift */; };
+		94F1DC1E29941F380067DE0C /* BottomSheetSubscreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94F1DC1D29941F380067DE0C /* BottomSheetSubscreen.storyboard */; };
+		94F1DC2029941F4F0067DE0C /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F1DC1F29941F4F0067DE0C /* BottomSheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		94F1DC102993BD470067DE0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94F1DC192993C4E00067DE0C /* PlacesInfo.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlacesInfo.xml; sourceTree = "<group>"; };
 		94F1DC1B2993C6D80067DE0C /* PlacesInfoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesInfoContainer.swift; sourceTree = "<group>"; };
+		94F1DC1D29941F380067DE0C /* BottomSheetSubscreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BottomSheetSubscreen.storyboard; sourceTree = "<group>"; };
+		94F1DC1F29941F4F0067DE0C /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				94F1DC062993BD470067DE0C /* ViewController.swift */,
+				94F1DC1F29941F4F0067DE0C /* BottomSheetViewController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 			children = (
 				94F1DC082993BD470067DE0C /* Main.storyboard */,
 				94F1DC0D2993BD470067DE0C /* LaunchScreen.storyboard */,
+				94F1DC1D29941F380067DE0C /* BottomSheetSubscreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 			files = (
 				94F1DC0F2993BD470067DE0C /* LaunchScreen.storyboard in Resources */,
 				94F1DC0C2993BD470067DE0C /* Assets.xcassets in Resources */,
+				94F1DC1E29941F380067DE0C /* BottomSheetSubscreen.storyboard in Resources */,
 				94F1DC1A2993C4E00067DE0C /* PlacesInfo.xml in Resources */,
 				94F1DC0A2993BD470067DE0C /* Main.storyboard in Resources */,
 			);
@@ -172,6 +179,7 @@
 				94F1DC072993BD470067DE0C /* ViewController.swift in Sources */,
 				94F1DC032993BD470067DE0C /* AppDelegate.swift in Sources */,
 				94F1DC1C2993C6D80067DE0C /* PlacesInfoContainer.swift in Sources */,
+				94F1DC2029941F4F0067DE0C /* BottomSheetViewController.swift in Sources */,
 				94F1DC052993BD470067DE0C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
