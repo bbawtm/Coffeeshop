@@ -1,11 +1,12 @@
 //
-//  PlacesInfoContainer.swift
+//  InfoContainer.swift
 //  Coffeeshop
 //
 //  Created by Vadim Popov on 08.02.2023.
 //
 
 import UIKit
+import MapKit
 
 
 class InfoContainer {
@@ -17,9 +18,40 @@ class InfoContainer {
         public var address: String?
         public var coordinates: (Double, Double)?
         
-        public var description: String { "\(city ?? "nil"), \(address ?? "nil")" }
+        public var description: String { "\(city ?? "nil"),\n\(address?.capitalized ?? "nil")" }
     
         public var isValid: Bool { city != nil && address != nil && coordinates != nil }
+    }
+    
+    public class City {
+        public let name: String
+        public var latitude: Double = 59.938955
+        public var longitude: Double = 30.315644
+        
+        public var location: CLLocationCoordinate2D {
+            get {
+                .init(latitude: latitude, longitude: longitude)
+            }
+            set {
+                self.latitude = newValue.latitude
+                self.longitude = newValue.longitude
+            }
+        }
+        
+        public init(name: String) {
+            self.name = name
+            
+            let request = MKLocalSearch.Request()
+            request.naturalLanguageQuery = name
+            let search = MKLocalSearch(request: request)
+            search.start { res, err in
+                if let coordinate = res?.mapItems[0].placemark.coordinate {
+                    self.location = coordinate
+                } else {
+                    print("Cannot find location")
+                }
+            }
+        }
     }
     
     // MARK: - XML Parser
@@ -82,6 +114,7 @@ class InfoContainer {
     // MARK: - Stored values
     
     public let contents: [Place]
+    public let cities: [City]
     
     // MARK: - Initializing
     
@@ -96,12 +129,24 @@ class InfoContainer {
             print(error.localizedDescription)
             fatalError("Unable to get data by path: \(path)")
         }
+        
         let xmlParser = XMLParser(data: data)
         let parser = Parser()
         xmlParser.delegate = parser
         xmlParser.parse()
         
         self.contents = parser.parsedArray
+        
+        var cities: [City] = []
+        for el in self.contents {
+            if let cityName = el.city, !cities.contains(where: { city in
+                city.name == cityName
+            }) {
+                cities.append(City(name: cityName))
+            }
+        }
+        cities.append(City(name: "Москва"))
+        self.cities = cities
     }
 
 }

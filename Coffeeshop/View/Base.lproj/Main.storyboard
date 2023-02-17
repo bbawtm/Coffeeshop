@@ -33,9 +33,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-Yo-9tW">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dd5-Yo-9tW">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
-                                <standardMapConfiguration key="preferredConfiguration" elevationStyle="realistic" showsTraffic="YES"/>
+                                <standardMapConfiguration key="preferredConfiguration" elevationStyle="realistic"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TQ2-s8-Kbo"/>

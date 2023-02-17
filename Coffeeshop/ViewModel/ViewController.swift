@@ -9,21 +9,28 @@ import UIKit
 import MapKit
 
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    // MARK: - Stored properties
     
     private let initRegionRadius = 20000.0
+    private let placesInfo = InfoContainer()
+    private var selectedCityIndex: Int = 0
+    private let locationManager = CLLocationManager()
     
     @IBOutlet var mapView: MKMapView!
+    
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let placesInfo = InfoContainer()
-        print(placesInfo.contents)
-        
-        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 59.938955, longitude: 30.315644), latitudinalMeters: initRegionRadius, longitudinalMeters: initRegionRadius), animated: true)
+        self.view.addSubview(cityPanel)
+        setCurrentRegion()
         mapView.delegate = self
         mapView.register(CustomAnnotation.self, forAnnotationViewWithReuseIdentifier: "CustomAnnotationIdentifier")
+        locationManager.requestWhenInUseAuthorization()
+        mapView.showsUserLocation = true
         
         for place in placesInfo.contents {
             guard let coord = place.coordinates else { continue }
@@ -32,12 +39,27 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotations.coordinate = CLLocationCoordinate2D(latitude: coord.0, longitude: coord.1)
             mapView.addAnnotation(annotations)
         }
+        
+        NSLayoutConstraint.activate([
+            cityPanel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            cityPanel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            cityPanel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 16),
+        ])
     }
     
+    private func setCurrentRegion() {
+        mapView.setRegion(MKCoordinateRegion(center: placesInfo.cities[selectedCityIndex].location, latitudinalMeters: initRegionRadius, longitudinalMeters: initRegionRadius), animated: true)
+    }
+    
+    // MARK: - MapView functions
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let pin = mapView.dequeueReusableAnnotationView(withIdentifier: "CustomAnnotationIdentifier")
-
-        return pin
+        if annotation.coordinate.latitude == mapView.userLocation.coordinate.latitude &&
+            annotation.coordinate.longitude == mapView.userLocation.coordinate.longitude
+        {
+            return nil
+        }
+        return mapView.dequeueReusableAnnotationView(withIdentifier: "CustomAnnotationIdentifier")
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -52,7 +74,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
         }
 
         if let sheet = sheetViewController.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
+            sheet.detents = [.custom(resolver: { context in
+                return context.maximumDetentValue * 0.33
+            })]
             sheet.prefersGrabberVisible = true
         }
         self.present(sheetViewController, animated: true)
@@ -61,6 +85,68 @@ class ViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         guard let view = view as? CustomAnnotation else { return }
         view.setDeselectedStyle()
+    }
+    
+    // MARK: - Picker functions
+    
+    private var nextSelectedRow: Int = 0
+    
+    private lazy var cityPanel: UITextField = {
+        let textfield = UITextField()
+        textfield.text = "Санкт-Петербург"
+        textfield.inputView = self.cityPicker
+        textfield.inputAccessoryView = self.cityPickerToolBar
+        textfield.tintColor = .clear
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        return textfield
+    }()
+    
+    private lazy var cityPicker: UIPickerView = {
+        let picker = UIPickerView()
+        picker.backgroundColor = .white
+        picker.delegate = self
+        picker.dataSource = self
+        return picker
+    }()
+    
+    private lazy var cityPickerToolBar: UIToolbar = {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(
+            title: "Done",
+            style: UIBarButtonItem.Style.done,
+            target: self,
+            action: #selector(donePicker)
+        )
+        toolBar.setItems([.flexibleSpace(), doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        return toolBar
+    }()
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        self.placesInfo.cities.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        self.placesInfo.cities[row].name
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.nextSelectedRow = row
+    }
+    
+    @objc private func donePicker() {
+        cityPanel.text = placesInfo.cities[nextSelectedRow].name
+        selectedCityIndex = nextSelectedRow
+        setCurrentRegion()
+        cityPanel.resignFirstResponder()
     }
     
 }

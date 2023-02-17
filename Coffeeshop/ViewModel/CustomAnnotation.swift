@@ -20,7 +20,6 @@ class CustomAnnotation: MKAnnotationView {
         backgroundColor = .clear
         frame = logoImageView.frame.applying(CGAffineTransform(scaleX: 0.27, y: 0.27))
         centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
-//        centerOffset = CGPoint(x: -frame.size.height / transformationScale, y: -frame.size.height / 2)
         
         addSubview(logoImageView)
         logoImageView.frame = bounds
@@ -37,11 +36,6 @@ class CustomAnnotation: MKAnnotationView {
         )
         centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         logoImageView.frame = bounds
-//        centerOffset = CGPoint(x: -frame.size.width / 2, y: -frame.size.height / 2)
-//        centerOffset = CGPoint(x: -frame.size.height / transformationScale, y: -frame.size.height / 2)
-//        centerOffset = centerOffset.applying(CGAffineTransform(scaleX: -transformationScale, y: transformationScale))
-
-        
     }
     
     public func setDeselectedStyle() {
@@ -51,12 +45,6 @@ class CustomAnnotation: MKAnnotationView {
         )
         centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         logoImageView.frame = bounds
-//        frame = frame.applying(CGAffineTransform(scaleX: 1.0/transformationScale, y: 1.0/transformationScale))
-//        logoImageView.frame = frame
-//        centerOffset = CGPoint(x: -frame.size.width / 2, y: -frame.size.height / 2)
-//        centerOffset = CGPoint(x: -frame.size.height * transformationScale, y: -frame.size.height / 2)
-
-//        centerOffset = centerOffset.applying(CGAffineTransform(scaleX: 1.0/transformationScale, y: 1.0/transformationScale))
     }
     
 }
