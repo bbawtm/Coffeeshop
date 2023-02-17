@@ -25,14 +25,16 @@ class InfoContainer {
     
     public class City {
         public let name: String
-        public var latitude: Double = 59.938955
-        public var longitude: Double = 30.315644
+        public var latitude: Double = 59.9366713
+        public var longitude: Double = 30.3150267
+        // TODO: first responder – delta on location
         
         public var location: CLLocationCoordinate2D {
             get {
                 .init(latitude: latitude, longitude: longitude)
             }
             set {
+                print("\(self.latitude), \(self.longitude) -> \(newValue.latitude), \(newValue.longitude)")
                 self.latitude = newValue.latitude
                 self.longitude = newValue.longitude
             }

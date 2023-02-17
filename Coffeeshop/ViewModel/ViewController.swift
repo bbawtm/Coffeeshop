@@ -41,14 +41,16 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
         }
         
         NSLayoutConstraint.activate([
-            cityPanel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            cityPanel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
             cityPanel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            cityPanel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 16),
+            cityPanel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            cityPanel.heightAnchor.constraint(equalToConstant: 45),
         ])
     }
     
     private func setCurrentRegion() {
         mapView.setRegion(MKCoordinateRegion(center: placesInfo.cities[selectedCityIndex].location, latitudinalMeters: initRegionRadius, longitudinalMeters: initRegionRadius), animated: true)
+        print("draw: \(placesInfo.cities[selectedCityIndex].location.latitude), \(placesInfo.cities[selectedCityIndex].location.longitude)")
     }
     
     // MARK: - MapView functions
@@ -93,10 +95,26 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
     
     private lazy var cityPanel: UITextField = {
         let textfield = UITextField()
+        
         textfield.text = "Санкт-Петербург"
+        textfield.textColor = .darkGray
+        textfield.tintColor = .clear
+        textfield.backgroundColor = .white
+        textfield.layer.cornerRadius = 22.5
+        
         textfield.inputView = self.cityPicker
         textfield.inputAccessoryView = self.cityPickerToolBar
-        textfield.tintColor = .clear
+        
+        textfield.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 0))
+        textfield.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 0))
+        textfield.leftViewMode = .always
+        textfield.rightViewMode = .always
+        
+        textfield.layer.shadowOpacity = 0.2
+        textfield.layer.shadowRadius = 5.0
+        textfield.layer.shadowOffset = CGSize.zero
+        textfield.layer.shadowColor = UIColor.gray.cgColor
+        
         textfield.translatesAutoresizingMaskIntoConstraints = false
         return textfield
     }()
