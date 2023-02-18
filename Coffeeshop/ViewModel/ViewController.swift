@@ -49,8 +49,10 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
     }
     
     private func setCurrentRegion() {
+        guard placesInfo.cities.count > selectedCityIndex && selectedCityIndex >= 0 else {
+            fatalError("no city for current index")
+        }
         mapView.setRegion(MKCoordinateRegion(center: placesInfo.cities[selectedCityIndex].location, latitudinalMeters: initRegionRadius, longitudinalMeters: initRegionRadius), animated: true)
-        print("draw: \(placesInfo.cities[selectedCityIndex].location.latitude), \(placesInfo.cities[selectedCityIndex].location.longitude)")
     }
     
     // MARK: - MapView functions

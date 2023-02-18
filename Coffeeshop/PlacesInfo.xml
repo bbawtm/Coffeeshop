@@ -71,7 +71,53 @@
         <Coordinates>59.800990, 30.266434</Coordinates>
     </Place>
     <Place>
+        <City></City>
         <Address></Address>
         <Coordinates></Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>Лаврушинский пер., 17, стр. 2</Address>
+        <Coordinates>55.740924, 37.622424</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>ул. Маши Порываевой, 34</Address>
+        <Coordinates>55.771796, 37.649003</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>площадь Киевского Вокзала, 2</Address>
+        <Coordinates>55.744331, 37.566791</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>7-я Кожуховская ул., 9</Address>
+        <Coordinates>55.710708, 37.674519</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>Автозаводская улица, 18</Address>
+        <Coordinates>55.704862, 37.640017</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>МКАД, 24-й километр, 1</Address>
+        <Coordinates>55.586830, 37.725135</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>Солянский проезд, 1</Address>
+        <Coordinates>55.754076, 37.635664</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>​Шереметьево аэропорт, терминал B</Address>
+        <Coordinates>55.981405, 37.414924</Coordinates>
+    </Place>
+    <Place>
+        <City>Москва</City>
+        <Address>​​Домодедово аэропорт, 1</Address>
+        <Coordinates>55.414920, 37.900763</Coordinates>
     </Place>
 </SetOfPlaces>

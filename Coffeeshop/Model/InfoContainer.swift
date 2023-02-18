@@ -20,21 +20,19 @@ class InfoContainer {
         
         public var description: String { "\(city ?? "nil"),\n\(address?.capitalized ?? "nil")" }
     
-        public var isValid: Bool { city != nil && address != nil && coordinates != nil }
+        public var isValid: Bool { !(city?.isEmpty ?? true) && !(address?.isEmpty ?? true) && coordinates != nil }
     }
     
     public class City {
         public let name: String
         public var latitude: Double = 59.9366713
         public var longitude: Double = 30.3150267
-        // TODO: first responder – delta on location
         
         public var location: CLLocationCoordinate2D {
             get {
                 .init(latitude: latitude, longitude: longitude)
             }
             set {
-                print("\(self.latitude), \(self.longitude) -> \(newValue.latitude), \(newValue.longitude)")
                 self.latitude = newValue.latitude
                 self.longitude = newValue.longitude
             }
@@ -90,22 +88,25 @@ class InfoContainer {
             qualifiedName qName: String?
         ) {
             if elementName == "Place" {
-                guard let currentPlace, currentPlace.isValid else { return }
+                guard let currentPlace, currentPlace.isValid else {
+                    print("{\(currentPlace?.city ?? "nil"), \(currentPlace?.address ?? "nil"), \(String(describing: currentPlace?.coordinates))} is not valid")
+                    return
+                }
                 parsedArray.append(currentPlace)
                 return
             }
             guard let currentBuffer, currentBuffer != "" else { return }
             switch elementName {
             case "City":
-                currentPlace?.city = currentBuffer
+                currentPlace?.city = currentBuffer.trimmingCharacters(in: .whitespaces)
             case "Address":
-                currentPlace?.address = currentBuffer
+                currentPlace?.address = currentBuffer.trimmingCharacters(in: .whitespaces)
             case "Coordinates":
-                let tmp = currentBuffer.components(separatedBy: ", ").map { Double($0) ?? -1.0 }
-                if tmp.contains(0) {
+                let tmp = currentBuffer.components(separatedBy: ", ").map { Double($0) }
+                guard tmp.count == 2, let tmp0 = tmp[0], let tmp1 = tmp[1] else {
                     fatalError("Wrong coordinate arguments")
                 }
-                currentPlace?.coordinates = (tmp[0], tmp[1])
+                currentPlace?.coordinates = (tmp0, tmp1)
             default:
                 return
             }
@@ -147,7 +148,6 @@ class InfoContainer {
                 cities.append(City(name: cityName))
             }
         }
-        cities.append(City(name: "Москва"))
         self.cities = cities
     }
 
