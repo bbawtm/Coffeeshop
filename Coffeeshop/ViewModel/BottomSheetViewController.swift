@@ -14,6 +14,7 @@ class BottomSheetViewController: UIViewController, UIAdaptivePresentationControl
     
     public var providedAddress: String?
     public var dismissClosure: (() -> Void)?
+    public var showRouteClosure: (() -> Void)?
     
     override func viewDidLoad() {
         placeAddress.text = providedAddress
@@ -26,6 +27,10 @@ class BottomSheetViewController: UIViewController, UIAdaptivePresentationControl
     
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         self.dismissClosure?()
+    }
+    
+    @IBAction func showRoute(_ sender: UIButton) {
+        self.showRouteClosure?()
     }
     
 }

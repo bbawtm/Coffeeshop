@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,6 +30,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOg-em-vwH">
+                                <rect key="frame" x="16" y="227" width="174.66666666666666" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="gaD-Gv-pYt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" imagePlacement="leading" title="Проложить путь" imagePadding="8">
+                                    <imageReference key="image" image="location.north.fill" catalog="system" symbolScale="small" variableValue="1"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="showRoute:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Eap-cj-ljc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -36,6 +50,8 @@
                             <constraint firstItem="q41-2p-pJ3" firstAttribute="centerY" secondItem="URl-8m-25y" secondAttribute="centerY" id="8ou-z8-gcm"/>
                             <constraint firstItem="URl-8m-25y" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="EJP-ag-QE1"/>
                             <constraint firstItem="q41-2p-pJ3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="26" id="F9d-Bx-iOY"/>
+                            <constraint firstItem="IOg-em-vwH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Q0X-Ze-3nc"/>
+                            <constraint firstItem="IOg-em-vwH" firstAttribute="top" secondItem="URl-8m-25y" secondAttribute="bottom" constant="33" id="SHq-fx-c2g"/>
                             <constraint firstItem="q41-2p-pJ3" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailingMargin" id="UQl-Mj-Ron"/>
                             <constraint firstItem="q41-2p-pJ3" firstAttribute="leading" secondItem="URl-8m-25y" secondAttribute="trailing" constant="30" id="gNB-Xf-OvA"/>
                             <constraint firstItem="URl-8m-25y" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="25" id="xpx-qD-m1G"/>
@@ -51,6 +67,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="location.north.fill" catalog="system" width="110" height="128"/>
         <image name="logo" width="591" height="591"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

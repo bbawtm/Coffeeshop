@@ -74,7 +74,10 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
         let sheetViewController = sheetStoryboard.instantiateInitialViewController() as! BottomSheetViewController
         sheetViewController.setPlaceAddress(annotation.title!!)
         sheetViewController.dismissClosure = {
-            self.mapView.deselectAnnotation(view.annotation, animated: true)
+            self.mapView.deselectAnnotation(annotation, animated: true)
+        }
+        sheetViewController.showRouteClosure = {
+            self.drawRoute(toCoordinate: annotation.coordinate)
         }
 
         if let sheet = sheetViewController.sheetPresentationController {
@@ -89,6 +92,48 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         guard let view = view as? CustomAnnotation else { return }
         view.setDeselectedStyle()
+    }
+    
+    // MARK: draw a route
+    
+    private func drawRoute(toCoordinate destination: CLLocationCoordinate2D) {
+        let req = MKDirections.Request()
+        req.source = MKMapItem.forCurrentLocation()
+        req.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination))
+        req.requestsAlternateRoutes = true
+        req.transportType = .walking
+        
+        let directions = MKDirections(request: req)
+        directions.calculate { res, err in
+            guard err == nil else {
+                fatalError(err?.localizedDescription ?? "unexpected error while finding routes")
+            }
+            if let routes = res?.routes, routes.count > 0 {
+                let quickestRoute = routes.sorted { $0.expectedTravelTime < $1.expectedTravelTime }[0]
+                self.mapView.removeOverlays(self.mapView.overlays)
+                self.plotPolyline(route: quickestRoute)
+            } else {
+                fatalError("no routes found")
+            }
+        }
+    }
+    
+    private func plotPolyline(route: MKRoute) {
+        mapView.addOverlay(route.polyline)
+        mapView.setVisibleMapRect(
+            route.polyline.boundingMapRect,
+            edgePadding: UIEdgeInsets(top: 100.0, left: 100.0, bottom: 100.0, right: 100.0),
+            animated: true
+        )
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+        if (overlay is MKPolyline) {
+            polylineRenderer.strokeColor = .systemGreen
+            polylineRenderer.lineWidth = 5
+        }
+        return polylineRenderer
     }
     
     // MARK: - Picker functions
