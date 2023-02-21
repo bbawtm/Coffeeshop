@@ -57,6 +57,12 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
     
     // MARK: - MapView functions
     
+    private lazy var sheetViewController = {
+        let sheetStoryboard = UIStoryboard.init(name: "BottomSheetSubscreen", bundle: Bundle.main)
+        let sheetViewController = sheetStoryboard.instantiateInitialViewController() as! BottomSheetViewController
+        return sheetViewController
+    }()
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.coordinate.latitude == mapView.userLocation.coordinate.latitude &&
             annotation.coordinate.longitude == mapView.userLocation.coordinate.longitude
@@ -70,8 +76,6 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
         guard let view = view as? CustomAnnotation, let annotation = view.annotation else { return }
         view.setSelectedStyle()
         
-        let sheetStoryboard = UIStoryboard.init(name: "BottomSheetSubscreen", bundle: Bundle.main)
-        let sheetViewController = sheetStoryboard.instantiateInitialViewController() as! BottomSheetViewController
         sheetViewController.setPlaceAddress(annotation.title!!)
         sheetViewController.dismissClosure = {
             self.mapView.deselectAnnotation(annotation, animated: true)
@@ -106,7 +110,12 @@ class ViewController: UIViewController, MKMapViewDelegate, UIPickerViewDelegate,
         let directions = MKDirections(request: req)
         directions.calculate { res, err in
             guard err == nil else {
-                fatalError(err?.localizedDescription ?? "unexpected error while finding routes")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Маршрут недоступен", message: err?.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    self.sheetViewController.present(alert, animated: true)
+                }
+                return
             }
             if let routes = res?.routes, routes.count > 0 {
                 let quickestRoute = routes.sorted { $0.expectedTravelTime < $1.expectedTravelTime }[0]

@@ -120,4 +120,14 @@
         <Address>​​Домодедово аэропорт, 1</Address>
         <Coordinates>55.414920, 37.900763</Coordinates>
     </Place>
+    <Place>
+        <City></City>
+        <Address></Address>
+        <Coordinates></Coordinates>
+    </Place>
+    <Place>
+        <City>Пермь</City>
+        <Address>улица Швецова, 41</Address>
+        <Coordinates>58.002162, 56.249512</Coordinates>
+    </Place>
 </SetOfPlaces>
